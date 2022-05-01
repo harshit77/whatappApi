@@ -5,6 +5,19 @@ const fs = require('fs');
 const { Client,LocalAuth } = require('whatsapp-web.js');
 const app = express();
 app.use(express.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", CLIENT_ORIGIN);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+  res.header("Access-Control-Allow-Credentials", true); <--- this is the only different line I added.
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
 // Use the saved values
 const client = new Client({
     authStrategy: new LocalAuth()
