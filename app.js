@@ -28,7 +28,7 @@ client.on('ready', () => {
 client.initialize();
 
 const sendMessageToNumber= async () =>{
-    const number="919005809784";
+    const number="919415734822";
     const getNumberId= await client.getNumberId(number);
     if(getNumberId) {
         console.log(getNumberId)
