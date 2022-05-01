@@ -2,7 +2,7 @@ const qrcode = require('qrcode-terminal');
 
 const fs = require('fs');
 const { Client,LocalAuth } = require('whatsapp-web.js');
-let sessionData;
+const app = express();
 
 // Use the saved values
 const client = new Client({
@@ -39,3 +39,17 @@ const sendMessageToNumber= async () =>{
     }
 
 }
+
+
+app.post('/sendmessage', async (req, res, next) => {
+  try {
+    const { number, message } = req.body; // Get the body
+    const msg = await client.sendMessage(`${number}@c.us`, message); // Send the message
+    res.send({ msg }); // Send the response
+  } catch (error) {
+    next(error);
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
