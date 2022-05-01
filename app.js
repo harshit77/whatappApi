@@ -4,7 +4,7 @@ const express = require('express');
 const fs = require('fs');
 const { Client,LocalAuth } = require('whatsapp-web.js');
 const app = express();
-
+app.use(express.json());
 // Use the saved values
 const client = new Client({
     authStrategy: new LocalAuth()
@@ -43,7 +43,7 @@ const sendMessageToNumber= async (message,number) =>{
 
 app.post('/sendmessage', async (req, res, next) => {
   try {
-      console.log("Gothe request");
+      console.log("Gothe request",req.body);
     const { number, message } = req.body; // Get the body
     const msg = await sendMessageToNumber(message,number); // Send the message
     res.send({ msg }); // Send the response
@@ -52,5 +52,5 @@ app.post('/sendmessage', async (req, res, next) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3050;
 app.listen(PORT, () => console.log(`🚀 @ https://elaborate-platypus-832699.netlify.app:${PORT}`));
