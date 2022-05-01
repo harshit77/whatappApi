@@ -17,7 +17,7 @@ client.on('qr', qr => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    sendMessageToNumber();
+//     sendMessageToNumber();
     client.on('message', message => {
         if(message.body === '!ping') {
             message.reply('pong');
@@ -27,12 +27,11 @@ client.on('ready', () => {
 
 client.initialize();
 
-const sendMessageToNumber= async () =>{
-    const number="919415734822";
+const sendMessageToNumber= async (message,number) =>{
     const getNumberId= await client.getNumberId(number);
     if(getNumberId) {
         console.log(getNumberId)
-     await client.sendMessage(getNumberId._serialized,"Dear Avinash, Your month is about to get over.Your due date is 01/05/2022.")
+     await client.sendMessage(getNumberId._serialized,message)
     }
     else {
         console.log("Mobile number is not registered")
@@ -44,7 +43,7 @@ const sendMessageToNumber= async () =>{
 app.post('/sendmessage', async (req, res, next) => {
   try {
     const { number, message } = req.body; // Get the body
-    const msg = await client.sendMessage(`${number}@c.us`, message); // Send the message
+    const msg = await sendMessageToNumber(message,number); // Send the message
     res.send({ msg }); // Send the response
   } catch (error) {
     next(error);
