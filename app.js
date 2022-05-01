@@ -43,6 +43,7 @@ const sendMessageToNumber= async (message,number) =>{
 
 app.post('/sendmessage', async (req, res, next) => {
   try {
+      console.log("Gothe request");
     const { number, message } = req.body; // Get the body
     const msg = await sendMessageToNumber(message,number); // Send the message
     res.send({ msg }); // Send the response
