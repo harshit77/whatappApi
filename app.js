@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: { 	      headless: true,
-      args: ['--no-sandbox','--disable-setuid-sandbox']  },
+                  args: ['--no-sandbox','--disable-setuid-sandbox']  },
 }
 );
 
@@ -68,3 +68,4 @@ app.post('/sendmessage', async (req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3050;
+app.listen(()=>console.log("LIstening"),PORT)
