@@ -66,3 +66,6 @@ app.post('/sendmessage', async (req, res, next) => {
     next(error);
   }
 });
+
+const PORT = process.env.PORT || 3050;
+app.listen(PORT,()=>console.log("Listening"))
