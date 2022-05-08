@@ -55,8 +55,9 @@ const sendMessageToNumber= async (message,number) =>{
 
 }
 
+app.get("/",(req,res)=>res.send("Hello World"))
 
-app.post('/sendmessage', async (req, res, next) => {
+app.post('/sendmessage', async (req, res) => {
   try {
       console.log("Gothe request",req.body);
     const { number, message } = req.body; // Get the body
