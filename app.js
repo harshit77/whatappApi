@@ -21,7 +21,10 @@ app.use(function(req, res, next) {
 // Use the saved values
 const client = new Client({
     authStrategy: new LocalAuth(),
-    puppeteer: { headless: false },
+    puppeteer: { headless: false, args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+  ]  },
 }
 );
 
