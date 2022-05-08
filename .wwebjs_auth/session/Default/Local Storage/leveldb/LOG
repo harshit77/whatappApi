@@ -1,0 +1,6 @@
+2022/05/08-18:49:19.815 b203 Reusing MANIFEST /Users/harshitsahu/Documents/Personal/whatsappWeb/whatappApi/.wwebjs_auth/session/Default/Local Storage/leveldb/MANIFEST-000001
+2022/05/08-18:49:19.815 b203 Recovering log #4
+2022/05/08-18:49:19.815 b203 Reusing old log /Users/harshitsahu/Documents/Personal/whatsappWeb/whatappApi/.wwebjs_auth/session/Default/Local Storage/leveldb/000004.log 
+2022/05/08-18:51:22.019 7203 Level-0 table #8: started
+2022/05/08-18:51:22.040 7203 Level-0 table #8: 23094 bytes OK
+2022/05/08-18:51:22.095 7203 Delete type=0 #4

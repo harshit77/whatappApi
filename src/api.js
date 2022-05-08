@@ -1,23 +1,11 @@
 const qrcode = require('qrcode-terminal');
+const serverless = require('serverless-http');
 const express = require('express');
 
-const fs = require('fs');
 const { Client,LocalAuth } = require('whatsapp-web.js');
 const app = express();
+const router = express.Router();
 app.use(express.json());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-  res.header("Access-Control-Allow-Credentials", true); 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-  next();
-});
 // Use the saved values
 const client = new Client({
     authStrategy: new LocalAuth()
@@ -40,6 +28,14 @@ client.on('ready', () => {
 });
 
 client.initialize();
+
+router.get("/",(req,res)=>{
+    const messageBody= req.body;
+    sendMessageToNumber(messageBody.mesage,messageBody.number)
+})
+
+app.use("/.netlify/functions/api",router)
+
 
 const sendMessageToNumber= async (message,number) =>{
     const getNumberId= await client.getNumberId(number);
@@ -65,5 +61,6 @@ app.post('/sendmessage', async (req, res, next) => {
   }
 });
 
-const PORT = process.env.PORT || 3050;
-app.listen(PORT, () => console.log(`🚀 @ https://elaborate-platypus-832699.netlify.app:${PORT}`));
+app.use('/.netlify/functions/api', router);
+
+module.exports.handler = serverless(app);
