@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node api.js",
-    "build": "node api.js"
+    "start": "node app.js",
+    "build": "node app.js"
   },
   "license": "MIT",
   "dependencies": {
