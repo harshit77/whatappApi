@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "netlify-lambda serve src/lambda",
-    "build:lambda": "FLUENTFFMPEG_COV=0 netlify-lambda build src/lambda"
+    "start": "node api.js",
+    "build": "node api.js"
   },
   "license": "MIT",
   "dependencies": {
