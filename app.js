@@ -20,7 +20,8 @@ app.use(function(req, res, next) {
 });
 // Use the saved values
 const client = new Client({
-    authStrategy: new LocalAuth()
+    authStrategy: new LocalAuth(),
+    puppeteer: { headless: false },
 }
 );
 
