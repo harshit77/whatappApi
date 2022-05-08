@@ -66,4 +66,3 @@ app.post('/sendmessage', async (req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3050;
-app.listen(PORT, () => console.log(`🚀 @ https://elaborate-platypus-832699.netlify.app:${PORT}`));
