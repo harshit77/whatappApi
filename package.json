@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "node app.js"
+    "build": "yarn install && node app.js"
   },
   "license": "MIT",
   "dependencies": {
