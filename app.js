@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 // Use the saved values
 const client = new Client({
     authStrategy: new LocalAuth(),
-    puppeteer: { 	executablePath: "/app/.apt/usr/bin/google-chrome",
+    puppeteer: { 	 executablePath: '/usr/bin/chromium-browser',
     args: [ '--no-sandbox', ],  },
 }
 );
