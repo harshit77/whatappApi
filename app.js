@@ -21,10 +21,8 @@ app.use(function(req, res, next) {
 // Use the saved values
 const client = new Client({
     authStrategy: new LocalAuth(),
-    puppeteer: { headless: false, args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox'
-  ]  },
+    puppeteer: { 	executablePath: "/app/.apt/usr/bin/google-chrome",
+    args: [ '--no-sandbox', ],  },
 }
 );
 
