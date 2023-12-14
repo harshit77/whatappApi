@@ -54,7 +54,7 @@ const sendMessageToNumber= async (message,number) =>{
 
 }
 
-app.get("/", (req, res) => res.send("Hello World");
+app.get("/",(req,res)=>res.send("Hello World"))
 
 app.post('/sendmessage', async (req, res) => {
   try {
