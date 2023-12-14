@@ -25,11 +25,11 @@ client.on('ready', () => {
     });
 });
 
-
+  client.initialize();
 
 const sendMessageToNumber= async (message,number) =>{
          console.log(number);
-  client.initialize();
+
     const getNumberId= await client.getNumberId(number);
      console.log(getNumberId);
     if(getNumberId) {
