@@ -1,17 +1,29 @@
 const qrcode = require('qrcode-terminal');
-const express = require("express");
-const serverless = require("serverless-http");
+const express = require('express');
 
+const { Client } = require('whatsapp-web.js');
 const app = express();
-const router = express.Router();
-
-const { Client,LocalAuth } = require('whatsapp-web.js');
+app.use(express.json());
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+//   res.header("Access-Control-Allow-Credentials", true); 
+//   if (req.method === "OPTIONS") {
+//     return res.sendStatus(204);
+//   }
+//   next();
+// });
+// Use the saved values
 const client = new Client({
-    authStrategy: new LocalAuth(),
     puppeteer: { 	      headless: true,
                   args: ['--no-sandbox','--disable-setuid-sandbox']  },
 }
 );
+
 
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
@@ -19,7 +31,7 @@ client.on('qr', qr => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    sendMessageToNumber("Hi","919415734822");
+    // sendMessageToNumber("Hi","918840213727");
     client.on('message', message => {
         if(message.body === '!ping') {
             message.reply('pong');
@@ -30,7 +42,9 @@ client.on('ready', () => {
 client.initialize();
 
 const sendMessageToNumber= async (message,number) =>{
+         console.log(number);
     const getNumberId= await client.getNumberId(number);
+     console.log(getNumberId);
     if(getNumberId) {
         console.log(getNumberId)
      await client.sendMessage(getNumberId._serialized,message)
@@ -50,11 +64,9 @@ app.post('/sendmessage', async (req, res) => {
     const msg = await sendMessageToNumber(message,number); // Send the message
     res.send({ msg }); // Send the response
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 });
 
-app.use(`/.netlify/functions/api`, router);
-
-module.exports = app;
-module.exports.handler = serverless(app);
+const PORT = process.env.PORT || 3050;
+app.listen(PORT,()=>console.log("Listening"))
