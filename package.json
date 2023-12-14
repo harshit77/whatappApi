@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "engines": {
-    "node": "v19.3.x",
+    "node": "v18.x.x",
     "npm": "9.2.x",
     "yarn": "1.22.x"
   },
