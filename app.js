@@ -24,14 +24,12 @@ const client = new Client({
 }
 );
 
-
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
 });
 
 client.on('ready', () => {
     console.log('Client is ready!');
-     sendMessageToNumber("Hi","918840213727");
     client.on('message', message => {
         if(message.body === '!ping') {
             message.reply('pong');
@@ -39,10 +37,11 @@ client.on('ready', () => {
     });
 });
 
-client.initialize();
+
 
 const sendMessageToNumber= async (message,number) =>{
          console.log(number);
+   await client.initialize();
     const getNumberId= await client.getNumberId(number);
      console.log(getNumberId);
     if(getNumberId) {
