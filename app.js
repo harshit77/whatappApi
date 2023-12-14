@@ -68,4 +68,4 @@ app.post('/sendmessage', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3050;
-app.listen(PORT,()=>console.log("Listening"))
+app.listen(PORT,()=>console.log("Listening",PORT))
