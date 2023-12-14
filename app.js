@@ -31,7 +31,7 @@ client.on('qr', qr => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    // sendMessageToNumber("Hi","918840213727");
+     sendMessageToNumber("Hi","918840213727");
     client.on('message', message => {
         if(message.body === '!ping') {
             message.reply('pong');
