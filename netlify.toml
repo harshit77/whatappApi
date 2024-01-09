@@ -1,5 +1,5 @@
 [functions]
-  external_node_modules=["express","qrcode-terminal","whatsapp-web.js"]
+  external_node_modules=["express","qrcode-terminal","whatsapp-web.js]
   node_bundler="esbuild"
 [[redirects]]
   force=true
